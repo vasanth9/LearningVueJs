@@ -22,14 +22,14 @@
 <body>
     <div id="app" v-cloak>
         {{ greeting }}
-        <input v-model="greeting" />
+        <input @keyup.enter="greet(greeting+' hmmm')" v-model="greeting" />
 
         <hr />
 
-        <div class="box" v-if="isVisible"></div>
-        <div class="box blue" v-else-if="isVisible"></div>
-        <div class="box red" v-else></div>
+        <button @click="toggleBox">Toggle Box</button>
 
+        <div class="box" v-if="isVisible"></div>
+        
     </div>
     
 
@@ -40,9 +40,18 @@
                 return {
                     greeting: "Hello Vue Js",
                     isVisible: false,
-                    isVisible2: false,
                 }
             }
+            ,
+                methods:{
+                    toggleBox(){
+                         this.isVisible = !this.isVisible
+                    },
+                    greet(greeting){
+                        console.log(greeting)
+                    }
+                   
+                }
         });
         app.mount('#app')
 
