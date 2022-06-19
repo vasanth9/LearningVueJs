@@ -2,17 +2,45 @@
 <html lang="en">
 <head>
     <title>Vue3 basics</title>
+    <style>
+        .box{
+           background-color: green;
+           height: 100px;
+           width: 100px;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .red{
+            background-color: red;
+        }
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         {{ greeting }}
+        <input v-model="greeting" />
+
+        <hr />
+
+        <div class="box" v-if="isVisible"></div>
+        <div class="box blue" v-else-if="isVisible"></div>
+        <div class="box red" v-else></div>
+
     </div>
+    
+
     <script src="https://unpkg.com/vue@next"></script>
     <script>
         let app = Vue.createApp({
             data:()=>{
                 return {
-                    greeting: "Hello Vue Js"
+                    greeting: "Hello Vue Js",
+                    isVisible: false,
+                    isVisible2: false,
                 }
             }
         });
